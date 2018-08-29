@@ -1,22 +1,25 @@
 #!/bin/bash
-# this is a stripped down version of https://github.com/ckuethe/usbarmory/wiki/USB-Gadgets - I don't claim any rights
 
-#modprobe libcomposite
+modprobe libcomposite
 cd /sys/kernel/config/usb_gadget/
 mkdir -p SleepyMatrixController
 cd SleepyMatrixController
+
 echo 0x1d6b > idVendor # 0x1d6b = Linux Foundation 0x45e = Microsoft
 echo 0x0104 > idProduct # Multifunction Composite Gadget
 echo 0x0100 > bcdDevice # v1.0.0
 echo 0x0200 > bcdUSB # USB2
+
+echo 0xEF > bDeviceClass
+echo 0x02 > bDeviceSubClass
+echo 0x01 > bDeviceProtocol
 
 mkdir -p strings/0x409
 echo "5eaf00d0b57ac1e" > strings/0x409/serialnumber
 echo "BaristaLabs, LLC" > strings/0x409/manufacturer
 echo "SleepyMatrix Controller" > strings/0x409/product
 
-mkdir -p configs/c.1/strings/0x409
-echo "Config 1: ECM network" > configs/c.1/strings/0x409/configuration
+mkdir -p configs/c.1
 echo 250 > configs/c.1/MaxPower
 
 # Add functions here
@@ -38,4 +41,12 @@ echo -ne \\x05\\x01\\x09\\x02\\xa1\\x01\\x09\\x01\\xa1\\x00\\x05\\x09\\x19\\x01\
 ln -s functions/hid.usb1 configs/c.1/
 # End functions
 
+# OS descriptors
+echo 1       > os_desc/use
+echo 0xcd    > os_desc/b_vendor_code
+echo MSFT100 > os_desc/qw_sign
+
+ln -s configs/c.1 os_desc
+
+udevadm settle -t 5 || :
 ls /sys/class/udc > UDC
