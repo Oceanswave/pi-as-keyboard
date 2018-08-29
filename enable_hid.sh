@@ -11,7 +11,7 @@ echo 0x0100 > bcdDevice # v1.0.0
 echo 0x0200 > bcdUSB # USB2
 
 mkdir -p strings/0x409
-echo "5eaf00d0b57ac1e > strings/0x409/serialnumber
+echo "5eaf00d0b57ac1e" > strings/0x409/serialnumber
 echo "BaristaLabs, LLC" > strings/0x409/manufacturer
 echo "SleepyMatrix Controller" > strings/0x409/product
 
