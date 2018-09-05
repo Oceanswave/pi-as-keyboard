@@ -40,7 +40,7 @@ echo 4 > functions/hid.usb1/report_length
 echo -ne \\x05\\x01\\x09\\x02\\xa1\\x01\\x09\\x01\\xa1\\x00\\x05\\x09\\x19\\x01\\x29\\x05\\x15\\x00\\x25\\x01\\x95\\x05\\x75\\x01\\x81\\x02\\x95\\x01\\x75\\x03\\x81\\x01\\x05\\x01\\x09\\x30\\x09\\x31\\x09\\x38\\x15\\x81\\x25\\x7f\\x75\\x08\\x95\\x03\\x81\\x06\\xc0\\xc0 > functions/hid.usb1/report_desc
 ln -s functions/hid.usb1 configs/c.1/
 
-# joystick
+# joystick - Simple 2 axis, 2 button.
 mkdir -p functions/hid.usb2
 echo 0 > functions/hid.usb2/protocol
 echo 0 > functions/hid.usb2/subclass
