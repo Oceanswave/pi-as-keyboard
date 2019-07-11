@@ -2,8 +2,8 @@
 
 modprobe libcomposite
 cd /sys/kernel/config/usb_gadget/
-mkdir -p SleepyMatrixController
-cd SleepyMatrixController
+mkdir -p SleepyGadget
+cd SleepyGadget
 
 echo 0x1d6b > idVendor # 0x1d6b = Linux Foundation 0x45e = Microsoft
 echo 0x0104 > idProduct # Multifunction Composite Gadget
@@ -17,7 +17,7 @@ echo 0x01 > bDeviceProtocol
 mkdir -p strings/0x409
 echo "5eaf00d0b57ac1e" > strings/0x409/serialnumber
 echo "BaristaLabs, LLC" > strings/0x409/manufacturer
-echo "SleepyMatrix Controller" > strings/0x409/product
+echo "SleepyGadget" > strings/0x409/product
 
 mkdir -p configs/c.1
 echo 250 > configs/c.1/MaxPower
