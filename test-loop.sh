@@ -4,7 +4,7 @@ while [ $counter -le 1000 ]
 do
   echo $counter
   sleep 5s
-  bash ./test.sh
+  bash ./test-keyboard.sh
   ((counter++))
 done
 
