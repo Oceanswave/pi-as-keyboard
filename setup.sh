@@ -10,7 +10,7 @@ echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
 echo "dwc2" | sudo tee -a /etc/modules
 
 # Install service
-cp enable_hid.service /lib/systemd/system/
+cp enable_hid.service /etc/systemd/system/
 
 # Install script
 cp enable_hid.sh /usr/bin/
