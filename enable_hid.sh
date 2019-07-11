@@ -60,3 +60,6 @@ ln -s configs/c.1 os_desc
 
 udevadm settle -t 5 || :
 ls /sys/class/udc > UDC
+
+dhclient -v -r wlan0
+dhclient -v wlan0
